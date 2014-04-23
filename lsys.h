@@ -3,20 +3,11 @@
 
 #include <iostream>
 #include <vector>
-
-// api dependency: none
-// platform depenedency: none
-// last modification date: 06.03.2009
-// start date: 06.03.2009
-// description: generic l-system engine
-// todo:
-// changes:
-
+#include <stdint.h>
 
 using namespace std;
 
-class glsystem
-{
+class glsystem {
     vector<char> vecVariables;
     vector<string> vecRules;
     vector<char> vecConstants;
@@ -28,55 +19,42 @@ public:
     void addVariable(char v);
     void addRule(string r);
     void setStart(string s);
-    void iterate(int n);
+    void iterate(uint32_t n);
     void show();
     ~glsystem();
 };
 
-
-glsystem::glsystem()
-{
+glsystem::glsystem() {
 
 }
 
-void glsystem::addVariable(char v)
-{
+void glsystem::addVariable(char v) {
     vecVariables.push_back(v);
 }
 
-void glsystem::addRule(string r)
-{
+void glsystem::addRule(string r) {
     vecRules.push_back(r);
 }
 
-
-void glsystem::setStart(string s)
-{
+void glsystem::setStart(string s) {
     start = s;
     chain = start;
 }
 
-
-void glsystem::iterate(int n)
-{
+void glsystem::iterate(uint32_t n) {
     string temp;
     bool hit = false;
-    for (int k = 0; k < n; ++k)
-    {
+    for (uint32_t k = 0; k < n; ++k) {
         temp = "";
-        for (int i = 0; i < chain.length(); ++i)
-        {
+        for (uint32_t i = 0; i < chain.length(); ++i) {
             hit = false;
-            for (int j = 0; j < vecVariables.size(); ++j)
-            {
-                if (chain[i] == vecVariables[j])
-                {
+            for (uint32_t j = 0; j < vecVariables.size(); ++j) {
+                if (chain[i] == vecVariables[j]) {
                     temp += vecRules[j];
                     hit = true;
                 }
             }
-            if (!hit)
-            {
+            if (!hit) {
                 temp += chain[i];
             }
         }
@@ -84,13 +62,11 @@ void glsystem::iterate(int n)
     }
 }
 
-void glsystem::show()
-{
+void glsystem::show() {
     cout << chain << endl;
 }
 
-glsystem::~glsystem()
-{
+glsystem::~glsystem() {
 
 }
 

@@ -7,15 +7,13 @@
 using namespace std;
 
 template <typename T>
-struct gnode
-{
+struct gnode {
     T value;
     gnode *prev;
 };
 
 template <typename T>
-class gstack
-{
+class gstack {
     struct gnode<T> *top;
 public:
     gstack();
@@ -25,22 +23,17 @@ public:
 };
 
 template <typename T>
-inline gstack<T>::gstack()
-{
+inline gstack<T>::gstack() {
     top = 0;
 }
 
 template <typename T>
-inline void gstack<T>::push(T value)
-{
-    if ( top == 0 )
-    {
+inline void gstack<T>::push(T value) {
+    if (top == 0) {
         top = new gnode<T>;
         top->value = value;
         top->prev = 0;
-    }
-    else
-    {
+    } else {
         gnode<T> *temp = top;
         top = new gnode<T>;
         assert(top);
@@ -50,8 +43,7 @@ inline void gstack<T>::push(T value)
 }
 
 template <typename T>
-inline T gstack<T>::pop()
-{
+inline T gstack<T>::pop() {
     T value = top->value;
     gnode<T> *temp = top->prev;
     delete top;
@@ -60,11 +52,9 @@ inline T gstack<T>::pop()
 }
 
 template <typename T>
-inline void gstack<T>::show()
-{
+inline void gstack<T>::show() {
     gnode<T> *temp = top;
-    while (temp)
-    {
+    while (temp) {
         cout << temp->value;
         temp = temp->prev;
     }

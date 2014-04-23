@@ -3,11 +3,10 @@
 
 #include <iostream>
 #include <cmath>
+
+#include <GL/freeglut.h>
+
 #include "gstack.h"
-
-
-#include <glut.h>
-
 #include "lsys.h"
 
 using namespace std;
