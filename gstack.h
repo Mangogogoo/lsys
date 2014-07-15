@@ -3,14 +3,9 @@
 #define GSTACK_H_INCLUDED
 
 #include <cassert>
+#include "gnode.h"
 
 using namespace std;
-
-template <typename T>
-struct gnode {
-    T value;
-    gnode *prev;
-};
 
 template <typename T>
 class gstack {
@@ -19,7 +14,7 @@ public:
     gstack();
     void push(T value);
     T pop();
-    void show();
+    void dump();
 };
 
 template <typename T>
@@ -52,7 +47,7 @@ inline T gstack<T>::pop() {
 }
 
 template <typename T>
-inline void gstack<T>::show() {
+inline void gstack<T>::dump() {
     gnode<T> *temp = top;
     while (temp) {
         cout << temp->value;

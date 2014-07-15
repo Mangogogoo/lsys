@@ -94,7 +94,7 @@ int main(int argc, char *argv[]) {
     gi.push(1);
     gi.push(2);
     gi.push(3);
-    gi.show();
+    gi.dump();
 
     // tree #3
 
