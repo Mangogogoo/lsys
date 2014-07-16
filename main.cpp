@@ -96,38 +96,12 @@ int main(int argc, char *argv[]) {
     gi.push(3);
     gi.dump();
 
-    // tree #3
-
-    gls.addVariable('F');
-    gls.addRule("FF-[-F+F+F]+[+F-F-F]");
-    gls.setStart("F");
-
-
-    // tree #2
-    /*
-        gls.addVariable('X');
-        gls.addVariable('F');
-        gls.addRule("F[+X]F[-X]+X");
-        gls.addRule("FF");
-        gls.setStart("X");
-     */
-    //tree #1
-    /*
-        gls.addVariable('X');
-        gls.addVariable('F');
-        gls.addRule("F-[[X]+X]+F[+FX]-X");
-        gls.addRule("FF");
-        gls.setStart("X");
-     */
-
-
-
     // koch
-    /*
+    
         gls.addVariable('F');
         gls.addRule("F+F-F-F+F");
         gls.setStart("F");
-     */
+    
 
 
     // sierpinski #1
@@ -140,19 +114,19 @@ int main(int argc, char *argv[]) {
      */
 
     // sierpinski #2
-    /*
-    gls.addVariable('F');
-    gls.addVariable('G');
-    gls.addRule("G-F-G");
-    gls.addRule("F+G+F");
-    gls.setStart("F");
-     */
+    
+//    gls.addVariable('F');
+//    gls.addVariable('G');
+//    gls.addRule("G-F-G");
+//    gls.addRule("F+G+F");
+//    gls.setStart("F");
+    
 
     // F-[[X]+X]+F[+FX]-X
     // FFF-[[X]+X]+F[+FX]-XF-[[X]+X]+F[+FX]-XFFFFF-[[X]+X]+F[+FX]-XF-[[X]+X]+F[+FX]-X
     //FF-[[F-[[X]+X]+F[+FX]-X]+F-[[X]+X]+F[+FX]-X]+FF[+FFF-[[X]+X]+F[+FX]-X]-F-[[X]+X]+F[+FX]-X
 
-    gls.iterate(3);
+    gls.iterate(13);
     //gls.show();
 
     glutDisplayFunc(display);

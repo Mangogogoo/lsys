@@ -1,0 +1,47 @@
+    // tree #3
+
+//    gls.addVariable('F');
+//    gls.addRule("FF-[-F+F+F]+[+F-F-F]");
+//    gls.setStart("F");
+
+
+    // tree #2
+    
+//        gls.addVariable('X');
+//        gls.addVariable('F');
+//        gls.addRule("F[+X]F[-X]+X");
+//        gls.addRule("FF");
+//        gls.setStart("X");
+    
+    //tree #1
+    /*
+        gls.addVariable('X');
+        gls.addVariable('F');
+        gls.addRule("F-[[X]+X]+F[+FX]-X");
+        gls.addRule("FF");
+        gls.setStart("X");
+     */
+
+
+
+    // sierpinski #1
+    /*
+    gls.addVariable('F');
+    gls.addVariable('G');
+    gls.addRule("F-G+F+G-F");
+    gls.addRule("GG");
+    gls.setStart("F-G-G");
+     */
+
+    // sierpinski #2
+    
+//    gls.addVariable('F');
+//    gls.addVariable('G');
+//    gls.addRule("G-F-G");
+//    gls.addRule("F+G+F");
+//    gls.setStart("F");
+    
+
+    // F-[[X]+X]+F[+FX]-X
+    // FFF-[[X]+X]+F[+FX]-XF-[[X]+X]+F[+FX]-XFFFFF-[[X]+X]+F[+FX]-XF-[[X]+X]+F[+FX]-X
+    //FF-[[F-[[X]+X]+F[+FX]-X]+F-[[X]+X]+F[+FX]-X]+FF[+FFF-[[X]+X]+F[+FX]-X]-F-[[X]+X]+F[+FX]-X
