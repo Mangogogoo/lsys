@@ -37,9 +37,9 @@ void display() {
     glRotatef(90, 0, 0, 1);
     curpos.reset();
     gangle = 0;
-    std::cout << gls.chain << std::endl;
-    for (uint32_t i = 0; i < gls.chain.length(); ++i) {
-        switch (gls.chain[i]) {
+    string chain = gls.getChain();
+    for (uint32_t i = 0; i < chain.length(); ++i) {
+        switch (chain[i]) {
             case 'G':
             case 'F':
                 draw(gangle);
@@ -162,7 +162,7 @@ int main(int argc, char *argv[]) {
     // FFF-[[X]+X]+F[+FX]-XF-[[X]+X]+F[+FX]-XFFFFF-[[X]+X]+F[+FX]-XF-[[X]+X]+F[+FX]-X
     //FF-[[F-[[X]+X]+F[+FX]-X]+F-[[X]+X]+F[+FX]-X]+FF[+FFF-[[X]+X]+F[+FX]-X]-F-[[X]+X]+F[+FX]-X
 
-    gls.iterate(7);
+    gls.iterate(6);
     //gls.show();
 
     glutDisplayFunc(display);

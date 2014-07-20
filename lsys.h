@@ -8,13 +8,16 @@
 class glsystem {
     std::map<char, std::string> rewritingPairs; // variable, rule pair
     std::string start;
-public:
     std::string chain;
+public:
+    
     glsystem();
     void addPair(char variable, std::string rule);
     void setStart(std::string start);
     void iterate(uint32_t n);
+    std::string getChain();
     void show();
+    void reset();
     ~glsystem();
 };
 
@@ -42,11 +45,16 @@ void glsystem::iterate(uint32_t n) {
         chain = temp;
     }
 }
-
+std::string glsystem::getChain() {
+    return chain;
+}
 void glsystem::show() {
     std::cout << chain << std::endl;
 }
-
+void glsystem::reset() {
+    start = "";
+    chain = "";
+}
 glsystem::~glsystem() {
 
 }
