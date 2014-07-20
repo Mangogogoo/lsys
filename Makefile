@@ -1,7 +1,10 @@
 CXX=g++
-CXXFLAGS=-O3 -Wall 
+RELFLAGS=-O3 -Wall 
+DBGFLAGS=-O0 -g
 
-all:
-	$(CXX) $(CXXFLAGS) main.cpp -o lsys -lGL -lGLU -lglut
+debug:
+	$(CXX) $(DBGFLAGS) main.cpp -o lsys -lGL -lGLU -lglut
+release:
+	$(CXX) $(RELFLAGS) main.cpp -o lsys -lGL -lGLU -lglut
 clean:
 	rm -rf core.* lsys
