@@ -7,14 +7,16 @@
 
 class glsystem {
     std::map<char, std::string> rewritingPairs; // variable, rule pair
-    std::string start;
-    std::string chain;
+    std::string start, chain;
+    float angle;
 public:
-    
+
     glsystem();
     void addPair(char variable, std::string rule);
     void setStart(std::string start);
     void iterate(uint32_t n);
+    void setAngle(float angle);
+    float getAngle() const;
     std::string getChain();
     void show();
     void reset();
@@ -45,16 +47,28 @@ void glsystem::iterate(uint32_t n) {
         chain = temp;
     }
 }
+
 std::string glsystem::getChain() {
     return chain;
+}
+
+// degrees
+void glsystem::setAngle(float angle) {
+    this->angle = angle;
+}
+
+float glsystem::getAngle() const  {
+    return angle;
 }
 void glsystem::show() {
     std::cout << chain << std::endl;
 }
+
 void glsystem::reset() {
     start = "";
     chain = "";
 }
+
 glsystem::~glsystem() {
 
 }

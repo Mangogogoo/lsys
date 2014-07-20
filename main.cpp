@@ -10,17 +10,18 @@ float gangle = 0;
 void draw(float angle) {
     point endpos;
 
-    endpos.setx((curpos.getx()) + 4.0 * cos(angle));
-    endpos.sety((curpos.gety()) + 4.0 * sin(angle));
+    endpos.setx((curpos.getx()) + 2.0 * cos(angle));
+    endpos.sety((curpos.gety()) + 2.0 * sin(angle));
     endpos.setz(curpos.getz());
 
-    curpos.dump("curpos: ");
-    endpos.dump("endpos: ");
+    //    curpos.dump("curpos: ");
+    //    endpos.dump("endpos: ");
 
     glBegin(GL_LINES);
     glVertex3f(curpos.getx(), curpos.gety(), curpos.getz());
     glVertex3f(endpos.getx(), endpos.gety(), endpos.getz());
     glEnd();
+
 
     curpos.setx(endpos.getx());
     curpos.sety(endpos.gety());
@@ -40,15 +41,11 @@ void display() {
     string chain = gls.getChain();
     for (uint32_t i = 0; i < chain.length(); ++i) {
         switch (chain[i]) {
-            case 'G':
-            case 'F':
-                draw(gangle);
-                break;
             case '+':
-                gangle += deg2rad(60);
+                gangle += deg2rad(gls.getAngle());
                 break;
             case '-':
-                gangle -= deg2rad(60);
+                gangle -= deg2rad(gls.getAngle());
                 break;
             case '[':
                 positions.push(curpos);
@@ -58,6 +55,10 @@ void display() {
                 curpos = positions.pop();
                 gangle = angles.pop();
                 break;
+            default:
+                draw(gangle);
+                break;
+
         }
     }
     glPopMatrix();
@@ -96,13 +97,28 @@ int main(int argc, char *argv[]) {
 
     init();
 
+
+    // sierpinski #1
+    //    gls.addPair('F', "G-F-G");
+    //    gls.addPair('G', "F+G+F");
+    //    gls.setAngle(60);
+    //    gls.setStart("F");
+
+
+
+    // branching
+    //    gls.addPair('F', "F[+F]F[-F]F");
+    //    gls.setAngle(27.5);
+    //    gls.setStart("F");
+
+    gls.addPair('X', "F[+X][-X]FX");
+    gls.addPair('F', "FF");
+    gls.setAngle(25.7);
+    gls.setStart("X");
+
+
     //    gls.addPair('F', "FF-F-F-F-F-F+F");
-    //    gls.setStart("F-F-F-F");
-
-
-
-    //    gls.addVariable('F');        
-    //    gls.addRule("F+FF-FF-F-F+F+F");
+    //    gls.setAngle(90);
     //    gls.setStart("F-F-F-F");
 
     //tree #1
@@ -147,15 +163,7 @@ int main(int argc, char *argv[]) {
 
     // sierpinski #2
 
-    //        gls.addVariable('F');
-    //        gls.addVariable('G');
-    //        gls.addRule("G-F-G");
-    //        gls.addRule("F+G+F");
-    //        gls.setStart("F");
 
-    gls.addPair('F', "G-F-G");
-    gls.addPair('G', "F+G+F");
-    gls.setStart("F");
 
 
     // F-[[X]+X]+F[+FX]-X
