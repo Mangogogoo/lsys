@@ -1,0 +1,5 @@
+P X F[+X][-X]FX
+P F FF
+A 25.7
+S X
+I 6

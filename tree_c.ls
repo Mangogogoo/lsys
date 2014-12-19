@@ -1,0 +1,4 @@
+P F FF-[-FFF][F-F-F]
+S F
+A 60
+I 6

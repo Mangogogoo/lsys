@@ -1,0 +1,5 @@
+P F F-G+F+G-F
+P G GG 
+S F-G-G
+I 6 
+A 90
