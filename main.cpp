@@ -10,8 +10,8 @@ float gangle = 0;
 void draw(float angle) {
     point endpos;
 
-    endpos.setx((curpos.getx()) + 2.0 * cos(angle));
-    endpos.sety((curpos.gety()) + 2.0 * sin(angle));
+    endpos.setx((curpos.getx()) + 4.0 * cos(angle));
+    endpos.sety((curpos.gety()) + 4.0 * sin(angle));
     endpos.setz(curpos.getz());
 
     glBegin(GL_LINES);
@@ -93,8 +93,10 @@ int main(int argc, char *argv[]) {
     glutCreateWindow("lsys");
 
     init();
-
-    gls.parse("branch_a.ls");
+    
+    //gls.parse("samples/branch_a.ls");
+    //gls.parse("samples/sierpinski_gasket.ls");
+    gls.parse("samples/hexagonal_gosper_curve.ls");
     gls.iterate();
 
     glutDisplayFunc(display);

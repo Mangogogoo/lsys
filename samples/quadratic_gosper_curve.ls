@@ -1,0 +1,5 @@
+S -R
+P L LL-R-R+L+L-R-RL+R+LLR-L+R+LL+R-LR-R-L+L+RR-
+P R +LL-R-R+L+LR+L-RR-L-R+LRR-L-RL+L+R-R-L+L+RR
+A 90
+I 2
