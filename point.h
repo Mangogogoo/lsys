@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 class point {
     float x, y, z;
 public:
@@ -39,13 +41,15 @@ public:
     inline float getz() const {
         return z;
     }
+
     inline void reset() {
         this->x = 0;
         this->y = 0;
         this->z = 0;
     }
-    inline void dump(const std::string &label = "") const {
-        std::cout << label << x << " " << y << " " << z << endl;
+
+    inline void dump(const string &label = "") const {
+        cout << label << x << " " << y << " " << z << endl;
     }
 };
 
