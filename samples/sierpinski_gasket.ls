@@ -1,5 +1,0 @@
-P L R+L+R
-P R L-R-L
-A 60
-S R
-I 6
