@@ -5,13 +5,13 @@
 
 lsystem gls;
 point curpos(0.0f, 0.0f, 0.0f);
-float gangle = 0;
+double gangle = 0;
 
-void draw(float angle) {
+void draw(double angle) {
     point endpos;
 
-    endpos.setx((curpos.getx()) + 4.0 * cos(angle));
-    endpos.sety((curpos.gety()) + 4.0 * sin(angle));
+    endpos.setx((curpos.getx()) + 2.0 * cos(angle));
+    endpos.sety((curpos.gety()) + 2.0 * sin(angle));
     endpos.setz(curpos.getz());
 
     glBegin(GL_LINES);
@@ -25,7 +25,7 @@ void draw(float angle) {
     curpos.setz(endpos.getz());
 }
 
-gstack <float> angles;
+gstack <double> angles;
 gstack <point> positions;
 
 void display() {
@@ -94,9 +94,7 @@ int main(int argc, char *argv[]) {
 
     init();
     
-    //gls.parse("samples/branch_a.ls");
-    //gls.parse("samples/sierpinski_gasket.ls");
-    gls.parse("samples/hexagonal_gosper_curve.ls");
+    gls.parse("samples/branch_f.ls");
     gls.iterate();
 
     glutDisplayFunc(display);
