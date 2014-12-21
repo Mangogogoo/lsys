@@ -1,0 +1,4 @@
+S F-F-F-F
+P F F-FF--F-F
+A 90
+I 5

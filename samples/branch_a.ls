@@ -1,5 +1,4 @@
-P X F[+X][-X]FX
-P F FF
+S F
+P F F[+F]F[-F]F
 A 25.7
-S X
-I 6
+I 5
