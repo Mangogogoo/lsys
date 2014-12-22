@@ -1,63 +1,30 @@
 #include "main.h"
 #include "point.h"
 
-#define deg2rad(a) a * M_PI / 180.0
-
-lsystem gls;
-point curpos(0.0f, 0.0f, 0.0f);
-double gangle = 0;
-
-void draw(double angle) {
-    point endpos;
-
-    endpos.setx((curpos.getx()) + 2.0 * cos(angle));
-    endpos.sety((curpos.gety()) + 2.0 * sin(angle));
-    endpos.setz(curpos.getz());
-
-    glBegin(GL_LINES);
-    glVertex3f(curpos.getx(), curpos.gety(), curpos.getz());
-    glVertex3f(endpos.getx(), endpos.gety(), endpos.getz());
-    glEnd();
 
 
-    curpos.setx(endpos.getx());
-    curpos.sety(endpos.gety());
-    curpos.setz(endpos.getz());
+vector<point *> vertices;
+
+void draw() {
+
+    for (uint32_t i = 0; i < vertices.size() / 2; ++i) {
+        glBegin(GL_LINES);
+
+        glVertex3d(vertices[i * 2]->getx(), vertices[i * 2]->gety(), vertices[i * 2]->getz());
+        cout << vertices[i * 2]->getx() << endl;
+        glVertex3d(vertices[i * 2 + 1]->getx(), vertices[i * 2 + 1]->gety(), vertices[i * 2 + 1]->getz());
+
+        glEnd();
+    }
+
 }
-
-gstack <double> angles;
-gstack <point> positions;
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glPushMatrix();
     glLoadIdentity();
     glRotatef(90, 0, 0, 1);
-    curpos.reset();
-    gangle = 0;
-    string chain = gls.getChain();
-    for (uint32_t i = 0; i < chain.length(); ++i) {
-        switch (chain[i]) {
-            case '+':
-                gangle += deg2rad(gls.getAngle());
-                break;
-            case '-':
-                gangle -= deg2rad(gls.getAngle());
-                break;
-            case '[':
-                positions.push(curpos);
-                angles.push(gangle);
-                break;
-            case ']':
-                curpos = positions.pop();
-                gangle = angles.pop();
-                break;
-            default:
-                draw(gangle);
-                break;
-
-        }
-    }
+    draw();
     glPopMatrix();
     glutSwapBuffers();
 }
@@ -83,7 +50,7 @@ void init() {
 }
 
 int main(int argc, char *argv[]) {
-
+    lsystem gls;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 
@@ -93,9 +60,9 @@ int main(int argc, char *argv[]) {
     glutCreateWindow("lsys");
 
     init();
-    
+
     gls.parse("samples/branch_f.ls");
-    gls.iterate();
+    vertices = gls.getVertices();
 
     glutDisplayFunc(display);
     glutIdleFunc(idle);

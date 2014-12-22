@@ -7,15 +7,24 @@
 #include <stdint.h>
 
 #include "tokenizer.h"
+#include "point.h"
+#include "utils.h"
 
 using namespace std;
 
 class lsystem {
     map<char, string> rewritingPairs; // variable, rule pair
-    string start, chain;
-    float angle;
+    string start, chain;    
     uint32_t iterationsCount;
+    double angle, gangle;
     float extractAngle(string line);
+    vector<point *> vertices;
+    point startPoint, endPoint, curPoint;
+    gstack <double> angles;
+    gstack <point> positions;
+    void iterate();
+    void prepareSegment(double angle);
+
 public:
 
     lsystem();
@@ -23,9 +32,9 @@ public:
     void addPair(char variable, string rule);
     void setStart(string start);
     void setIterationCount(uint32_t n);
-    void iterate();
-    void setAngle(float angle);
-    float getAngle() const;
+    vector<point *> getVertices();
+    void setAngle(double angle);
+    double getAngle() const;
     string getChain();
     void show();
     void reset();
@@ -33,7 +42,7 @@ public:
 };
 
 lsystem::lsystem() {
-
+    gangle = 0.0;
 }
 
 void lsystem::addPair(char variable, string rule) {
@@ -61,17 +70,63 @@ void lsystem::iterate() {
     }
 }
 
+void lsystem::prepareSegment(double angle) {
+
+    /* TODO: remove scaling */
+    endPoint.setx((curPoint.getx()) + 2.0 * cos(angle));
+    endPoint.sety((curPoint.gety()) + 2.0 * sin(angle));
+    endPoint.setz(curPoint.getz());
+
+    vertices.push_back(new point(curPoint));
+    vertices.push_back(new point(endPoint));
+
+    curPoint.setx(endPoint.getx());
+    curPoint.sety(endPoint.gety());
+    curPoint.setz(endPoint.getz());
+
+}
+
+vector<point *> lsystem::getVertices() {
+
+    this->iterate();
+
+    string chain = this->getChain();
+
+    for (uint32_t i = 0; i < chain.length(); ++i) {
+        switch (chain[i]) {
+            case '+':
+                gangle += deg2rad(getAngle());
+                break;
+            case '-':
+                gangle -= deg2rad(getAngle());
+                break;
+            case '[':
+                positions.push(curPoint);
+                angles.push(gangle);
+                break;
+            case ']':
+                curPoint = positions.pop();
+                gangle = angles.pop();
+                break;
+            default:
+                prepareSegment(gangle);
+                break;
+        }
+    }
+    return vertices;
+}
+
 string lsystem::getChain() {
     return chain;
 }
 
 // degrees
 
-void lsystem::setAngle(float angle) {
+void lsystem::setAngle(double angle) {
     this->angle = angle;
 }
 
-float lsystem::getAngle() const {
+double lsystem::getAngle() const {
     return angle;
 }
 
@@ -114,8 +169,10 @@ void lsystem::parse(string path) {
 }
 
 lsystem::~lsystem() {
-
-
+    for (uint32_t i = 0; i < vertices.size(); ++i) {
+        delete vertices[i];
+    }
+    vertices.clear();
 }
 
 #endif

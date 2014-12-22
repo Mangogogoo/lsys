@@ -6,7 +6,7 @@
 using namespace std;
 
 class point {
-    float x, y, z;
+    double x, y, z;
 public:
 
     point() {
@@ -14,31 +14,32 @@ public:
         this->y = 0;
         this->z = 0;
     }
+    
 
-    point(float _x, float _y, float _z) : x(_x), y(_y), z(_z) {
+    point(double _x, double _y, double _z) : x(_x), y(_y), z(_z) {
     }
 
-    inline void setx(float x) {
+    inline void setx(double x) {
         this->x = x;
     }
 
-    inline float getx() const {
+    inline double getx() const {
         return x;
     }
 
-    inline void sety(float y) {
+    inline void sety(double y) {
         this->y = y;
     }
 
-    inline float gety() const {
+    inline double gety() const {
         return y;
     }
 
-    inline void setz(float z) {
+    inline void setz(double z) {
         this->z = z;
     }
 
-    inline float getz() const {
+    inline double getz() const {
         return z;
     }
 
