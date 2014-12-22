@@ -1,5 +1,5 @@
-#ifndef EXTRACTOR_H
-#define	EXTRACTOR_H
+#ifndef TOKENIZER_H
+#define	TOKENIZER_H
 
 #include <string>
 #include <vector>
@@ -23,5 +23,5 @@ string tokenizer::get(string line, char delimiter, uint32_t i) {
     else return "";
 }
 
-#endif	/* EXTRACTOR_H */
+#endif	/* TOKENIZER_H */
 
