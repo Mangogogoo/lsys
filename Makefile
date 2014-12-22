@@ -1,6 +1,6 @@
 CXX=g++
-RELFLAGS=-O3 -Wall 
-DBGFLAGS=-O0 -g -Wall -pedantic 
+RELFLAGS=-O3 -Wall -std=c++11 
+DBGFLAGS=-O0 -g -Wall -pedantic -std=c++11 
 
 debug:
 	$(CXX) $(DBGFLAGS) main.cpp -o lsys -lGL -lGLU -lglut
