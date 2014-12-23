@@ -2,6 +2,7 @@
 #include "point.h"
 
 vector<point *> vertices;
+bbox bb;
 
 void draw() {
     for (uint32_t i = 0; i < vertices.size() / 2; ++i) {
@@ -10,6 +11,10 @@ void draw() {
             glVertex3d(vertices[i * 2 + 1]->getx(), vertices[i * 2 + 1]->gety(), vertices[i * 2 + 1]->getz());
         glEnd();
     }
+        glBegin(GL_LINES);
+            glVertex3d(bb.getp0().getx(), bb.getp0().gety(), 0);
+            glVertex3d(bb.getp1().getx(), bb.getp0().gety(), 0);            
+        glEnd();
 
 }
 
@@ -57,7 +62,9 @@ int main(int argc, char *argv[]) {
 
     gls.parse("samples/branch_f.ls");
     vertices = gls.getVertices();
-
+    
+    bb = gls.getBbox();
+    bb.dump();
     glutDisplayFunc(display);
     glutIdleFunc(idle);
     glutKeyboardFunc(keyboard);

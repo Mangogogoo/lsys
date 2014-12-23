@@ -7,14 +7,14 @@
 #include <stdint.h>
 
 #include "tokenizer.h"
-#include "point.h"
+#include "bbox.h"
 #include "utils.h"
 
 using namespace std;
 
 class lsystem {
     map<char, string> rewritingPairs; // variable, rule pair
-    string start, chain;    
+    string start, chain;
     uint32_t iterationsCount;
     double angle, gangle;
     float extractAngle(string line);
@@ -24,7 +24,7 @@ class lsystem {
     gstack <point> positions;
     void iterate();
     void prepareSegment(double angle);
-
+    bbox bb;
 public:
 
     lsystem();
@@ -33,6 +33,7 @@ public:
     void setStart(string start);
     void setIterationCount(uint32_t n);
     vector<point *> getVertices();
+    bbox getBbox();
     void setAngle(double angle);
     double getAngle() const;
     string getChain();
@@ -72,9 +73,8 @@ void lsystem::iterate() {
 
 void lsystem::prepareSegment(double angle) {
 
-    /* TODO: remove scaling */
-    endPoint.setx((curPoint.getx()) + 2.0 * cos(angle));
-    endPoint.sety((curPoint.gety()) + 2.0 * sin(angle));
+    endPoint.setx((curPoint.getx()) + cos(angle));
+    endPoint.sety((curPoint.gety()) + sin(angle));
     endPoint.setz(curPoint.getz());
 
     vertices.push_back(new point(curPoint));
@@ -114,6 +114,12 @@ vector<point *> lsystem::getVertices() {
         }
     }
     return vertices;
+}
+
+bbox lsystem::getBbox() {
+    
+    
+    return bb;
 }
 
 string lsystem::getChain() {
