@@ -3,12 +3,13 @@
 
 #include <string>
 #include <vector>
+#include <stdint.h>
 
 using namespace std;
 
 class tokenizer {
 public:
-    static string get(string line, char delimiter, uint32_t i);
+    string get(string line, char delimiter, uint32_t i);
 };
 
 string tokenizer::get(string line, char delimiter, uint32_t i) {
@@ -22,6 +23,7 @@ string tokenizer::get(string line, char delimiter, uint32_t i) {
     if (tokens.size() > i) return tokens[i];
     else return "";
 }
+
 
 #endif	/* TOKENIZER_H */
 
