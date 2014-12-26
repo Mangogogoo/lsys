@@ -4,43 +4,43 @@
 #include "point.h"
 
 class bbox {
-    point p0, p1; // p0 -> upper left, p1 - lower right
+    point upperLeft, lowerRight; 
 public:
     bbox();
-    bbox(point p0, point p1);
-    void setp0(point p0);
-    void setp1(point p1);
-    point getp0() const;
-    point getp1() const;
+    bbox(point upperLeft, point lowerRight);
+    void setUpperLeft(point upperLeft);
+    void setLowerRight(point lowerRight);
+    point getUpperLeft() const;
+    point getLowerRight() const;
     void dump();
 };
 
 bbox::bbox() {
 }
 
-bbox::bbox(point p0, point p1) {
-    this->p0 = p0;
-    this->p1 = p1;
+bbox::bbox(point upperLeft, point lowerRight) {
+    this->upperLeft = upperLeft;
+    this->lowerRight = lowerRight;
 }
 
-void bbox::setp0(point p0) {
-    this->p0 = p0;
+void bbox::setUpperLeft(point upperLeft) {
+    this->upperLeft = upperLeft;
 }
 
-void bbox::setp1(point p1) {
-    this->p1 = p1;
+void bbox::setLowerRight(point lowerRight) {
+    this->lowerRight = lowerRight;
 }
 
-point bbox::getp0() const {
-    return p0;
+point bbox::getUpperLeft() const {
+    return upperLeft;
 }
 
-point bbox::getp1() const {
-    return p1;
+point bbox::getLowerRight() const {
+    return lowerRight;
 }
 
 void bbox::dump() {
-    cout << p0.getx() << " " << p0.gety() << " " << p1.getx() << " " << p1.gety() << endl;
+    cout << upperLeft.getx() << " " << upperLeft.gety() << " " << lowerRight.getx() << " " << lowerRight.gety() << endl;
 }
 
 

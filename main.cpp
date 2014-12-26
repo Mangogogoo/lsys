@@ -11,11 +11,6 @@ void draw() {
             glVertex3d(vertices[i * 2 + 1]->getx(), vertices[i * 2 + 1]->gety(), vertices[i * 2 + 1]->getz());
         glEnd();
     }
-        glBegin(GL_LINES);
-            glVertex3d(bb.getp0().getx(), bb.getp0().gety(), 0);
-            glVertex3d(bb.getp1().getx(), bb.getp0().gety(), 0);            
-        glEnd();
-
 }
 
 void display() {
