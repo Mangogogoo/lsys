@@ -91,10 +91,9 @@ int main(int argc, char *argv[]) {
     init();
 
     gls.parse("samples/dragon_curve.ls");
-    vertices = gls.getVertices();
-    
+    vertices = gls.getVertices();  
     bb = gls.getBbox();
-    bb.dump();
+    
     scaleFactorX =  SCREEN_WIDTH / bb.getWidth();
     scaleFactorY = SCREEN_HEIGT / bb.getHeight();
     if (scaleFactorX > scaleFactorY) scaleFactorX = scaleFactorY; else scaleFactorY = scaleFactorX;
