@@ -14,42 +14,41 @@ public:
         this->y = 0;
         this->z = 0;
     }
-    
 
     point(double _x, double _y, double _z) : x(_x), y(_y), z(_z) {
     }
 
-    inline void setx(double x) {
+    void setx(double x) {
         this->x = x;
     }
 
-    inline double getx() const {
+    double getx() const {
         return x;
     }
 
-    inline void sety(double y) {
+    void sety(double y) {
         this->y = y;
     }
 
-    inline double gety() const {
+    double gety() const {
         return y;
     }
 
-    inline void setz(double z) {
+    void setz(double z) {
         this->z = z;
     }
 
-    inline double getz() const {
+    double getz() const {
         return z;
     }
 
-    inline void reset() {
+    void reset() {
         this->x = 0;
         this->y = 0;
         this->z = 0;
     }
 
-    inline void dump(const string &label = "") const {
+    void dump(const string &label = "") const {
         cout << label << x << " " << y << " " << z << endl;
     }
 };

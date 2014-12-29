@@ -34,6 +34,7 @@ public:
     void setIterationCount(uint32_t n);
     vector<point *> getVertices();
     bbox getBbox();
+    void updateBbox(point c);
     void setAngle(double angle);
     double getAngle() const;
     string getChain();
@@ -69,6 +70,10 @@ void lsystem::iterate() {
         }
         chain = temp;
     }
+}
+
+void lsystem::updateBbox(point p) {
+    bb.update(p);
 }
 
 void lsystem::prepareSegment(double angle) {
@@ -110,6 +115,7 @@ vector<point *> lsystem::getVertices() {
                 break;
             default:
                 prepareSegment(gangle);
+                updateBbox(curPoint);
                 break;
         }
     }
