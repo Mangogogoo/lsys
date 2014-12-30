@@ -123,8 +123,8 @@ vector<point *> lsystem::getVertices() {
 }
 
 bbox lsystem::getBbox() {
-    
-    
+
+
     return bb;
 }
 
@@ -153,12 +153,11 @@ void lsystem::reset() {
 
 void lsystem::parse(string path) {
     this->reset();
-    ifstream f;
-    string line;
-    f.open(path.c_str());
     tokenizer t;
-    while (!f.eof()) {
-        getline(f, line);
+    string line;
+    vector<string> lines;
+    lines = loadTextFile(path);
+    for (string line : lines) {
         switch (line [0]) {
             case 'A': this->setAngle(atof(t.get(line, ' ', 1).c_str()));
                 break;
@@ -176,8 +175,6 @@ void lsystem::parse(string path) {
                 ; // TODO: log unknown command
         }
     }
-
-    f.close();
 }
 
 lsystem::~lsystem() {
