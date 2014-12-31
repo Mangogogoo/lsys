@@ -6,4 +6,11 @@ debug:
 	./tokenizer_test
 	$(CXX) $(CXXFLAGS) config_test.cpp -o config_test
 	./config_test
+	$(CXX) $(CXXFLAGS) bbox_test.cpp -o bbox_test
+	./bbox_test
+	
+clean:
+	rm config_test tokenizer_test
+	
+    
 	

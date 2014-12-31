@@ -155,7 +155,7 @@ void lsystem::parse(string path) {
     this->reset();
     tokenizer t;
     string line;
-    vector<string> lines;
+    vector<string> lines;   
     lines = loadTextFile(path);
     for (string line : lines) {
         switch (line [0]) {
