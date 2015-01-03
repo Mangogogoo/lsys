@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++11 
+CXXFLAGS=-std=c++11 -g -pg -O0
 
 debug:
 	$(CXX) $(CXXFLAGS) tokenizer_test.cpp -o tokenizer_test
@@ -10,7 +10,7 @@ debug:
 	./bbox_test
 	
 clean:
-	rm config_test tokenizer_test
+	rm -rf config_test tokenizer_test bbox_test
 	
     
 	

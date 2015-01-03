@@ -22,8 +22,8 @@ config::config(string path) {
     vector<string> lines = loadTextFile(path);    
     tokenizer t;
     for (string line: lines) {
-        string key = t.get(line, ' ', 1);
-        string value = t.get(line, ' ', 3);
+        string key = t.get(line, ' ', 0);
+        string value = t.get(line, ' ', 2);
         properties.insert(pair<string, string>(key, value));
     }    
 }

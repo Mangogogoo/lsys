@@ -9,21 +9,23 @@ using namespace std;
 
 class tokenizer {
 public:
-    string get(string line, char delimiter, uint32_t i);
+    string get(string line, const char delimiter, uint32_t i);
 };
 
-string tokenizer::get(string line, char delimiter, uint32_t i) {
+string tokenizer::get(string line, const char delimiter, uint32_t i) {
     vector<string> tokens;
-    size_t startPoint = 0, endPoint;
-    while ((endPoint = line.find(delimiter, startPoint)) != string::npos) {
-        if (endPoint != startPoint) tokens.push_back(line.substr(startPoint, endPoint - startPoint));
-        if (endPoint + 1 < line.length()) startPoint = endPoint + 1; else break;
-    } 
-    if (endPoint != line.length()) tokens.push_back(line.substr(startPoint, string::npos));  
-    if (tokens.size() > i) return tokens[i];
-    else return "";
+    string token;
+    for (uint32_t j = 0; j < line.length(); ++j) {
+        if (line[j] == delimiter) {
+            if ((j > 0) && line[j - i] != delimiter) {
+                tokens.push_back(token);
+                token = "";
+            }
+        } else
+            token += line[j];
+    }
+    return i < tokens.size() ? tokens[i] : "";
 }
-
 
 #endif	/* TOKENIZER_H */
 
