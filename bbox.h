@@ -45,33 +45,33 @@ point bbox::getLowerRight() const {
 }
 
 void bbox::update(point p) {
-    if (p.getx() > lowerRight.getx()) lowerRight.setx(p.getx());
-    if (p.getx() < upperLeft.getx()) upperLeft.setx(p.getx());
+    if (p.getX() > lowerRight.getX()) lowerRight.setX(p.getX());
+    if (p.getX() < upperLeft.getX()) upperLeft.setX(p.getX());
 
-    if (p.gety() < lowerRight.gety()) lowerRight.sety(p.gety());
-    if (p.gety() > upperLeft.gety()) upperLeft.sety(p.gety());
+    if (p.getY() < lowerRight.getY()) lowerRight.setY(p.getY());
+    if (p.getY() > upperLeft.getY()) upperLeft.setY(p.getY());
 
 }
 
 void bbox::dump() {
-    cout << upperLeft.getx() << " " << upperLeft.gety() << " " << lowerRight.getx() << " " << lowerRight.gety() << endl;
+    cout << upperLeft.getX() << " " << upperLeft.getY() << " " << lowerRight.getX() << " " << lowerRight.getY() << endl;
     cout << this->getWidth() << " " << this->getHeight() << endl;
 }
 
 double bbox::getHeight() const {
-    return upperLeft.gety() - lowerRight.gety();
+    return upperLeft.getY() - lowerRight.getY();
 }
 
 double bbox::getWidth() const {
-    return lowerRight.getx() - upperLeft.getx();
+    return lowerRight.getX() - upperLeft.getX();
 }
 
 double bbox::getCenterX() const {
-    return (upperLeft.getx() + lowerRight.getx()) / 2.0;
+    return (upperLeft.getX() + lowerRight.getX()) / 2.0;
 }
 
 double bbox::getCenterY() const {
-    return (upperLeft.gety() + lowerRight.gety()) / 2.0;
+    return (upperLeft.getY() + lowerRight.getY()) / 2.0;
 }
 
 #endif	/* BBOX_H */

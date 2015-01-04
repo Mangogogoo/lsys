@@ -78,16 +78,16 @@ void lsystem::updateBbox(point p) {
 
 void lsystem::prepareSegment(double angle) {
 
-    endPoint.setx((curPoint.getx()) + cos(angle));
-    endPoint.sety((curPoint.gety()) + sin(angle));
-    endPoint.setz(curPoint.getz());
+    endPoint.setX((curPoint.getX()) + cos(angle));
+    endPoint.setY((curPoint.getY()) + sin(angle));
+    endPoint.setZ(curPoint.getZ());
 
     vertices.push_back(new point(curPoint));
     vertices.push_back(new point(endPoint));
 
-    curPoint.setx(endPoint.getx());
-    curPoint.sety(endPoint.gety());
-    curPoint.setz(endPoint.getz());
+    curPoint.setX(endPoint.getX());
+    curPoint.setY(endPoint.getY());
+    curPoint.setZ(endPoint.getZ());
 
 }
 

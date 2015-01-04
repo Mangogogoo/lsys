@@ -18,27 +18,27 @@ public:
     point(double _x, double _y, double _z) : x(_x), y(_y), z(_z) {
     }
 
-    void setx(double x) {
+    void setX(double x) {
         this->x = x;
     }
 
-    double getx() const {
+    double getX() const {
         return x;
     }
 
-    void sety(double y) {
+    void setY(double y) {
         this->y = y;
     }
 
-    double gety() const {
+    double getY() const {
         return y;
     }
 
-    void setz(double z) {
+    void setZ(double z) {
         this->z = z;
     }
 
-    double getz() const {
+    double getZ() const {
         return z;
     }
 

@@ -17,10 +17,10 @@ void draw() {
     glColor3f(0.5f, 0.5f, 0.5f);
     glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
     glBegin(GL_QUADS);
-        glVertex2d(bb.getLowerRight().getx(), bb.getLowerRight().gety());
-        glVertex2d(bb.getUpperLeft().getx(), bb.getLowerRight().gety());
-        glVertex2d(bb.getUpperLeft().getx(), bb.getUpperLeft().gety());
-        glVertex2d(bb.getLowerRight().getx(), bb.getUpperLeft().gety());
+        glVertex2d(bb.getLowerRight().getX(), bb.getLowerRight().getY());
+        glVertex2d(bb.getUpperLeft().getX(), bb.getLowerRight().getY());
+        glVertex2d(bb.getUpperLeft().getX(), bb.getUpperLeft().getY());
+        glVertex2d(bb.getLowerRight().getX(), bb.getUpperLeft().getY());
     glEnd();
 #endif
     
@@ -29,8 +29,8 @@ void draw() {
     glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
     for (uint32_t i = 0; i < vertices.size() / 2; ++i) {
         glBegin(GL_LINES);
-            glVertex3d(vertices[i * 2]->getx(), vertices[i * 2]->gety(), vertices[i * 2]->getz());
-            glVertex3d(vertices[i * 2 + 1]->getx(), vertices[i * 2 + 1]->gety(), vertices[i * 2 + 1]->getz());
+            glVertex3d(vertices[i * 2]->getX(), vertices[i * 2]->getY(), vertices[i * 2]->getZ());
+            glVertex3d(vertices[i * 2 + 1]->getX(), vertices[i * 2 + 1]->getY(), vertices[i * 2 + 1]->getZ());
         glEnd();        
     }
     
