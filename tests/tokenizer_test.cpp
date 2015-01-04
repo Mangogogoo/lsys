@@ -6,8 +6,8 @@
 
 int main(int argc, char *argv[]) {
     tokenizer t;
-    assert(t.get("quick fox jumps over the lazy dog", ' ', 1) != "quick");
-    assert(t.get("quick fox jumps over the lazy dog", ' ', 1) != "dog");
+    assert(t.get("quick fox jumps over the lazy dog", ' ', 0) == "quick");
+    assert(t.get("quick fox jumps over the lazy dog", ' ', 6) == "dog");
     
     return 0;
 }
