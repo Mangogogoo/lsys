@@ -25,7 +25,6 @@ string tokenizer::get(string line, const char delimiter, uint32_t i) {
             token += line[j];
     }
     if (token != "") {
-        cout << token << endl;
         tokens.push_back(token);
     }
 
