@@ -1,8 +1,9 @@
 #include "main.h"
 #include "point.h"
+#include "config.h"
 
 #define SCREEN_WIDTH 800
-#define SCREEN_HEIGT 600
+#define SCREEN_HEIGHT 600
 #define SCREEN_DEPTH 40
 
 //#define DRAW_BBOX
@@ -67,35 +68,41 @@ void idle() {
     glutPostRedisplay();
 }
 
-void init() {
+void initGL(double screenWidth, double screenHeight, double screenDepth) {
     glMatrixMode(GL_PROJECTION);
     
     glLoadIdentity();
     // 800x600
-    glOrtho(-SCREEN_WIDTH / 2, SCREEN_WIDTH / 2, -SCREEN_HEIGT / 2,  SCREEN_HEIGT / 2, -SCREEN_DEPTH, SCREEN_DEPTH);
+    glOrtho(-screenWidth / 2, screenWidth / 2, -screenHeight / 2,  screenHeight / 2, -screenDepth, screenDepth);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
 
+
+
 int main(int argc, char *argv[]) {
     lsystem gls;
+    config c("config.cfg");
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 
-    glutInitWindowSize(SCREEN_WIDTH, SCREEN_HEIGT);
+    uint32_t screenWidth = c.getValue("SCREEN_WIDTH") != "" ? atoi(c.getValue("SCREEN_WIDTH").c_str()) : SCREEN_WIDTH;
+    uint32_t screenHeight = c.getValue("SCREEN_HEIGHT") != "" ? atoi(c.getValue("SCREEN_HEIGHT").c_str()) : SCREEN_HEIGHT;
+        
+    glutInitWindowSize(screenWidth, screenHeight);
     glutInitWindowPosition(0, 0);
 
-    glutCreateWindow("lsys");
+    glutCreateWindow(c.getValue("APP_NAME").c_str());
 
-    init();
+    initGL(screenWidth, screenHeight, SCREEN_DEPTH);
 
     gls.parse("samples/dragon_curve.ls");
     vertices = gls.getVertices();  
     bb = gls.getBbox();
     
-    scaleFactorX =  SCREEN_WIDTH / bb.getWidth();
-    scaleFactorY = SCREEN_HEIGT / bb.getHeight();
+    scaleFactorX =  screenWidth / bb.getWidth();
+    scaleFactorY = screenHeight / bb.getHeight();
     if (scaleFactorX > scaleFactorY) scaleFactorX = scaleFactorY; else scaleFactorY = scaleFactorX;
 
     glutDisplayFunc(display);
