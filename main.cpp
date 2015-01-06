@@ -97,7 +97,7 @@ int main(int argc, char *argv[]) {
 
     initGL(screenWidth, screenHeight, SCREEN_DEPTH);
 
-    gls.parse("samples/dragon_curve.ls");
+    gls.parse("samples/snowflake_contour.ls");
     vertices = gls.getVertices();  
     bb = gls.getBbox();
     

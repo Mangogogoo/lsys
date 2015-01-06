@@ -1,0 +1,4 @@
+S F-F-F-F-F
+P F F-F++F+F-F-F
+I 4
+A 72

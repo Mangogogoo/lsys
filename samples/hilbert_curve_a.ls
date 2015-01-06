@@ -1,0 +1,6 @@
+S X
+P X +YF-XFX-FY+
+P Y -XF+YFY+FX-
+P F F
+I 5
+A 90
