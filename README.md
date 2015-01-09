@@ -12,5 +12,5 @@ just type ./lsys
 
 .dependencies
 
-just opengl ang (free)glut
+just opengl and (free)glut
 
