@@ -7,7 +7,7 @@
 #include <stdint.h>
 
 #include "tokenizer.h"
-#include "bbox.h"
+#include "bounding_box.h"
 #include "utils.h"
 
 using namespace std;
@@ -20,11 +20,11 @@ class lsystem {
     float extractAngle(string line);
     vector<point *> vertices;
     point startPoint, endPoint, curPoint;
-    gstack <double> angles;
-    gstack <point> positions;
+    stack <double> angles;
+    stack <point> positions;
     void iterate();
     void prepareSegment(double angle);
-    bbox bb;
+    bounding_box bb;
 public:
 
     lsystem();
@@ -33,7 +33,7 @@ public:
     void setStart(string start);
     void setIterationCount(uint32_t n);
     vector<point *> getVertices();
-    bbox getBbox();
+    bounding_box getBbox();
     void updateBbox(point c);
     void setAngle(double angle);
     double getAngle() const;
@@ -122,7 +122,7 @@ vector<point *> lsystem::getVertices() {
     return vertices;
 }
 
-bbox lsystem::getBbox() {
+bounding_box lsystem::getBbox() {
 
 
     return bb;

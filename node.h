@@ -2,9 +2,9 @@
 #define	GNODE_H
 
 template <typename T>
-struct gnode {
+struct node {
     T value;
-    gnode *prev;
+    node *prev;
 };
 
 

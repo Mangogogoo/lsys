@@ -3,11 +3,11 @@
 
 #include "point.h"
 
-class bbox {
+class bounding_box {
     point upperLeft, lowerRight;
 public:
-    bbox();
-    bbox(point upperLeft, point lowerRight);
+    bounding_box();
+    bounding_box(point upperLeft, point lowerRight);
     void setUpperLeft(point upperLeft);
     void setLowerRight(point lowerRight);
     point getUpperLeft() const;
@@ -20,31 +20,31 @@ public:
     void dump();
 };
 
-bbox::bbox() {
+bounding_box::bounding_box() {
 }
 
-bbox::bbox(point upperLeft, point lowerRight) {
+bounding_box::bounding_box(point upperLeft, point lowerRight) {
     this->upperLeft = upperLeft;
     this->lowerRight = lowerRight;
 }
 
-void bbox::setUpperLeft(point upperLeft) {
+void bounding_box::setUpperLeft(point upperLeft) {
     this->upperLeft = upperLeft;
 }
 
-void bbox::setLowerRight(point lowerRight) {
+void bounding_box::setLowerRight(point lowerRight) {
     this->lowerRight = lowerRight;
 }
 
-point bbox::getUpperLeft() const {
+point bounding_box::getUpperLeft() const {
     return upperLeft;
 }
 
-point bbox::getLowerRight() const {
+point bounding_box::getLowerRight() const {
     return lowerRight;
 }
 
-void bbox::update(point p) {
+void bounding_box::update(point p) {
     if (p.getX() > lowerRight.getX()) lowerRight.setX(p.getX());
     if (p.getX() < upperLeft.getX()) upperLeft.setX(p.getX());
 
@@ -53,24 +53,24 @@ void bbox::update(point p) {
 
 }
 
-void bbox::dump() {
+void bounding_box::dump() {
     cout << upperLeft.getX() << " " << upperLeft.getY() << " " << lowerRight.getX() << " " << lowerRight.getY() << endl;
     cout << this->getWidth() << " " << this->getHeight() << endl;
 }
 
-double bbox::getHeight() const {
+double bounding_box::getHeight() const {
     return upperLeft.getY() - lowerRight.getY();
 }
 
-double bbox::getWidth() const {
+double bounding_box::getWidth() const {
     return lowerRight.getX() - upperLeft.getX();
 }
 
-double bbox::getCenterX() const {
+double bounding_box::getCenterX() const {
     return (upperLeft.getX() + lowerRight.getX()) / 2.0;
 }
 
-double bbox::getCenterY() const {
+double bounding_box::getCenterY() const {
     return (upperLeft.getY() + lowerRight.getY()) / 2.0;
 }
 

@@ -6,7 +6,7 @@
 
 #include <GL/freeglut.h>
 
-#include "gstack.h"
+#include "stack.h"
 #include "lsys.h"
 
 using namespace std;

@@ -8,7 +8,7 @@
 
 //#define DRAW_BBOX
 vector<point *> vertices;
-bbox bb;
+bounding_box bb;
 double scaleFactorX, scaleFactorY;
 
 void draw() {

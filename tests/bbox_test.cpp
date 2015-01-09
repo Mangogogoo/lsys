@@ -1,10 +1,10 @@
 #include <cassert>
-#include "../bbox.h"
+#include "../bounding_box.h"
 
 using namespace std;
 
 int main(int argc, char** argv) {
-    bbox bb;
+    bounding_box bb;
     
     point upperLeft(-1, 1, 0);
     point lowerRight(1, -1, 0);
